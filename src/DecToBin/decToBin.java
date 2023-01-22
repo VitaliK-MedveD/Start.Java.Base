@@ -21,5 +21,6 @@ public class decToBin {
             bin = b + bin;
             i = i / 2;
         } System.out.println("В двоичной системе счисления: " + bin);
+        in.close();
     }
 }
