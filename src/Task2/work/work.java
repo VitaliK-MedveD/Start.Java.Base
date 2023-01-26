@@ -1,4 +1,4 @@
-package work;
+package Task2.work;
 
 public class work {
 

@@ -1,6 +1,6 @@
-package Runner;
+package Task2.work.Runner;
 
-import work.work;
+import Task2.work.work;
 
 public class Runner {
 
