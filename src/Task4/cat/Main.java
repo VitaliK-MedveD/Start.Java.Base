@@ -1,4 +1,4 @@
-package Task4.Cat;
+package Task4.cat;
 
 public class Main {
 

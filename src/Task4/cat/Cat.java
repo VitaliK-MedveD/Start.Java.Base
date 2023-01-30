@@ -1,6 +1,4 @@
-package Task4.Cat;
-
-import java.util.Random;
+package Task4.cat;
 
 public class Cat {
 

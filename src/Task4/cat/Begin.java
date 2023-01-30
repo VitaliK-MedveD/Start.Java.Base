@@ -1,6 +1,5 @@
-package Task4.Cat;
+package Task4.cat;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Begin {

@@ -1,4 +1,4 @@
-package Task4.Sum;
+package Task4.sum;
 
 import java.util.Scanner;
 

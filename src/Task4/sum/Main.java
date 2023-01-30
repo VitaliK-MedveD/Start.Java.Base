@@ -1,7 +1,4 @@
-package Task4.Sum;
-
-import java.util.Arrays;
-import java.util.Scanner;
+package Task4.sum;
 
 /**
  * @author VitaliK.MedveD
