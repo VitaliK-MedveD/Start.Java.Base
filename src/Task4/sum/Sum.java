@@ -2,6 +2,12 @@ package Task4.sum;
 
 import java.util.Scanner;
 
+/**
+ * @author VitaliK.MedveD
+ * Задача: Найдите сумму и произведение цифр числа, введенного с клавиатуры.
+ * Применены Массивы!
+ */
+
 public class Sum {
 
     public static int length(int n) {
@@ -21,7 +27,6 @@ public class Sum {
         System.out.print("Введите целое число: ");
         int number = in.nextInt();
         int[] num = new int[length(number)];
-        int tempNumber = number;
 
         for (int i = 0; number != 0; i++) {
             int a = number % 10;
