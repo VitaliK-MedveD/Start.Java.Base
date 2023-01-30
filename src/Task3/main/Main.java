@@ -1,6 +1,6 @@
-package Task3;
+package Task3.main;
 
-import Task3.Rainbow;
+import Task3.rainbow.Rainbow;
 
 /**
  * @author VitaliK.MedveD
