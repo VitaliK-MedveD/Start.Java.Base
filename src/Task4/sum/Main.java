@@ -3,6 +3,7 @@ package Task4.sum;
 /**
  * @author VitaliK.MedveD
  * Задача: Найдите сумму и произведение цифр числа, введенного с клавиатуры.
+ * Применены Массивы!
  */
 public class Main {
 

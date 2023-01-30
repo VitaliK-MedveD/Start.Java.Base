@@ -21,9 +21,10 @@ public class Sum {
         System.out.print("Введите целое число: ");
         int number = in.nextInt();
         int[] num = new int[length(number)];
+        int tempNumber = number;
 
         for (int i = 0; number != 0; i++) {
-            int a = (int) (number % 10);
+            int a = number % 10;
             number /= 10;
             num[i] = a;
         }
