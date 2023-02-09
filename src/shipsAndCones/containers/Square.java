@@ -2,6 +2,10 @@ package shipsAndCones.containers;
 
 public class Square extends Container{
 
+    int height = setRandomHeight();
+    int diagonal = setRandomOneOfTwo(BIG, SMALL);
+    int din = diagonal / 10;
+    int density = setRandomOneOfTwo(HI_DENSITY, LOW_DENSITY);
     private String type;
 
     @Override
