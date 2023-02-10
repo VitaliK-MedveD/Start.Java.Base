@@ -2,10 +2,10 @@ package shipsAndCones.containers;
 
 public class Cylinder extends Container{
 
-    int height = setRandomHeight();
-    int diagonal = setRandomOneOfTwo(BIG, SMALL);
-    int din = diagonal / 10;
-    int density = setRandomOneOfTwo(HI_DENSITY, LOW_DENSITY);
+    private int height = setRandomHeight();
+    private int diagonal = setRandomOneOfTwo(BIG, SMALL);
+    private int din = diagonal / 10;
+    private int density = setRandomOneOfTwo(HI_DENSITY, LOW_DENSITY);
     private String type;
 
     @Override
@@ -23,12 +23,16 @@ public class Cylinder extends Container{
         return din;
     }
 
+    public int getDiagonal() {
+        return diagonal;
+    }
+
     @Override
     public String getType() {
         if (din == 1) {
-            type = "Малый цилиндр";
+            type = LITTLE + CYLINDER;
         } else {
-            type = "Большой цилиндр";
+            type = LARGE + CYLINDER;
         }
         return type;
     }

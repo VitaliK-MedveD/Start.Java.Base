@@ -3,6 +3,8 @@ package shipsAndCones.containers;
 public class RandomConteiner extends Container{
 
     private int weight;
+    private int diagonal;
+    private int din;
     private int baseArea;
     private String type;
 
@@ -10,21 +12,27 @@ public class RandomConteiner extends Container{
         switch (random.nextInt(1, 4)){
             case 1:
                 Container square = new Square();
-                baseArea = square.getBaseArea(diagonal);
                 weight = square.getWeight();
+                diagonal = square.getDiagonal();
+                din = square.getDin();
                 type = square.getType();
+                baseArea = square.getBaseArea(diagonal);
                 break;
             case 2:
                 Container cylinder = new Cylinder();
-                baseArea = cylinder.getBaseArea(diagonal);
                 weight = cylinder.getWeight();
+                diagonal = cylinder.getDiagonal();
+                din = cylinder.getDin();
                 type = cylinder.getType();
+                baseArea = cylinder.getBaseArea(diagonal);
                 break;
             case 3:
                 Container cone = new Cone();
-                baseArea = cone.getBaseArea(diagonal);
                 weight = cone.getWeight();
+                diagonal = cone.getDiagonal();
+                din = cone.getDin();
                 type = cone.getType();
+                baseArea = cone.getBaseArea(diagonal);
                 break;
         }
     }
@@ -46,5 +54,9 @@ public class RandomConteiner extends Container{
     @Override
     public int getDin() {
         return din;
+    }
+
+    public int getDiagonal() {
+        return diagonal;
     }
 }

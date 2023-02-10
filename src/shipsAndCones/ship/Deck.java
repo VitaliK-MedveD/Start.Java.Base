@@ -14,7 +14,6 @@ public class Deck {
     private int weightDeck;
 
     public void loadTheDeck() {
-        //int numberOfDin = numberOfDecks * 4;
         countConteiners = 0;
         Container[] containers = new Container[numberOfDin];
         for (int i = 0, din = 0; i < numberOfDin; i++) {
