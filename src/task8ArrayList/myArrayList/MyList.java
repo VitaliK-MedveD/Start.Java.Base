@@ -2,8 +2,6 @@ package task8ArrayList.myArrayList;
 
 public interface MyList<T> {
 
-
-
     int size();
 
     boolean isEmpty();
@@ -16,13 +14,13 @@ public interface MyList<T> {
 
     boolean remove(Object value);
 
-    boolean addAll(MyList<? extends T> value); // добавляет элементы одной коллекции в конец другой.
+    boolean addAll(MyList<? extends T> value);
 
-    T get (int index); // возвращает объект из списка по индексу index
+    T get (int index);
 
-    T remove (int index); // удаляет элемент по индексу index, возвращает при этом удалённый объект.
+    T remove (int index);
 
-    T set (int index, T value); // присваивает значение объекта value элементу, который находиться по индексу index.
+    T set (int index, T value);
 
-    int indexOf (Object value); // возвращает индекс первого вхождения объекта value в список. Если объект не найден вернуть -1;
+    int indexOf (Object value);
 }
