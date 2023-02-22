@@ -16,18 +16,21 @@ public class Main {
         people.add(new Person("Стасик",17, 50));
         people.add(new Person("Валера",25, 10));
         people.add(new Person("Витя",30, 45));
+        people.add(new Person("Инокентий",21, 16));
         people.add(new Person("Ксения",18, 20));
+        drescod(people);
+    }
 
+    private static void drescod(List<Person> people) {
+        List<Person> peopleInBar = new ArrayList<>(people);
         for (Person person : people) {
             try {
                 person.goDrinkBeer();
-            } catch (NameEmptyException e) {
+            } catch (NameEmptyException | NotEnoughAgeException | NotEnoughCashException e) {
                 System.out.println(e.getMessage());
-            } catch (NotEnoughAgeException e) {
-                System.out.println(e.getMessage());
-            } catch (NotEnoughCashException e) {
-                System.out.println(e.getMessage());
+                peopleInBar.remove(person);
             }
         }
+        System.out.println('\n' + "В бар смогли пойти: " + peopleInBar);
     }
 }

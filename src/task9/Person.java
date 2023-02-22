@@ -11,7 +11,7 @@ public class Person {
     int cash;
 
     public void goDrinkBeer() throws RuntimeException {
-        if (name == "") {
+        if (name.equals("")) {
             throw new NameEmptyException("\"" + name + "\"" +  " - невнятное имя!");
         } else if (age < 18) {
             throw new NotEnoughAgeException("\"" + name + "\"" +  " - еще малолетка!");
@@ -26,5 +26,10 @@ public class Person {
         this.name = name;
         this.age = age;
         this.cash = cash;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
