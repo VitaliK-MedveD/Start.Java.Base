@@ -1,4 +1,4 @@
-package task9.exceptions;
+package task9.homeWork9.exceptions;
 
 public class NameEmptyException extends RuntimeException {
 

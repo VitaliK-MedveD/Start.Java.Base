@@ -1,8 +1,8 @@
-package task9;
+package task9.homeWork9;
 
-import task9.exceptions.NameEmptyException;
-import task9.exceptions.NotEnoughAgeException;
-import task9.exceptions.NotEnoughCashException;
+import task9.homeWork9.exceptions.NameEmptyException;
+import task9.homeWork9.exceptions.NotEnoughAgeException;
+import task9.homeWork9.exceptions.NotEnoughCashException;
 
 public class Person {
 
