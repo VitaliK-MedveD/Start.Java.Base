@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
 
 public class Menu {
 
-    private static final String MENU_ITEM = "Выберите пункт меню: ";
-    private static final String DEL_POSITION_NUMBER = "Ведите номер позиции которую хотите удалить, " +
+    public static final String MENU_ITEM = "Выберите пункт меню: ";
+    public static final String DEL_POSITION_NUMBER = "Ведите номер позиции которую хотите удалить, " +
             System.lineSeparator() + "или введите '0' для возврата в предыдущее меню: ";
-    private static final String INCORRECT_VALUE = "Некорректное значение!";
-    private static final String LIST_PRODUCTS = "Текущий список товаров:";
-    private static final String LIST_ORDERS = "Текущий список заказов:";
-    private static final String LIST_IS_EMPTY = "Список пуст!";
-    private static final String ITEM_NAME = "Введите название товара: ";
-    private static final String ADDED = "Товар добавлен!";
-    private static final String EXIT = "Выход из меню.";
+    public static final String INCORRECT_VALUE = "Некорректное значение!";
+    public static final String LIST_PRODUCTS = "Текущий список товаров:";
+    public static final String LIST_ORDERS = "Текущий список заказов:";
+    public static final String LIST_IS_EMPTY = "Список пуст!";
+    public static final String ITEM_NAME = "Введите название товара: ";
+    public static final String ADDED = "Товар добавлен!";
+    public static final String EXIT = "Выход из меню.";
 
     public int setId() {
         Random random = new Random();
