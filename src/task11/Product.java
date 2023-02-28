@@ -14,14 +14,6 @@ public class Product extends Menu{
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return "[" + name +
@@ -30,9 +22,4 @@ public class Product extends Menu{
                 ']';
     }
 
-    public String toStringShort() {
-        return "[" + name +
-                "; ID: " + id +
-                ']';
-    }
 }

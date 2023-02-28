@@ -15,7 +15,7 @@ public class Menu {
     private static final String INCORRECT_VALUE = "Некорректное значение!";
     private static final String LIST_PRODUCTS = "Текущий список товаров:";
     private static final String LIST_IS_EMPTY = "Список товаров пуст!";
-    private static final String ITEM_NAME = "Введите название: ";
+    private static final String ITEM_NAME = "Введите название товара: ";
     private static final String EXIT = "Выход из меню.";
 
     public UUID setUUID() {
@@ -100,7 +100,11 @@ public class Menu {
                 System.out.println();
                 break;
             case 2:
-                System.out.println();
+                try {
+                    createOrder();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case 3:
                 System.out.println();
@@ -208,12 +212,31 @@ public class Menu {
         } else productsMenu();
     }
 
-    private void addOrder(String numberOrder) throws IOException {
-        File file = Path.of("resources", numberOrder + "orderList.txt").toFile();
+    private void createOrder() throws IOException {
+        List<Product> products = new ArrayList<>();
+        boolean izContinue;
+        do {
+            izContinue = true;
+            System.out.print("""
+                1 - Добавить товар в заказ.
+                0 - Закончить добавление.
+                """);
+            switch (choiceNumber(MENU_ITEM, 1)) {
+                case 1:
+                    products.add(new Product(enterName()));
+                    System.out.println("Товар добавлен!");
+                    break;
+                case 0:
+                    izContinue = false;
+                    break;
+            }
+        } while (izContinue);
+        System.out.println(Arrays.toString(products.toArray()));
+        ordersMenu();
+        File file = Path.of("resources", "ordersList.txt").toFile();
         try(var writer = new BufferedWriter(new FileWriter(file, true))) {
-            writer.append(new Product(enterName()).toString());
-            writer.newLine();
+//            writer.append(new Product(enterName()).toString());
+//            writer.newLine();
         }
-        File[] list = file.listFiles();
     }
 }
