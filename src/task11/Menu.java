@@ -4,6 +4,7 @@ import task11.exceptions.WrongChoice;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,19 +15,21 @@ public class Menu {
             System.lineSeparator() + "или введите '0' для возврата в предыдущее меню: ";
     private static final String INCORRECT_VALUE = "Некорректное значение!";
     private static final String LIST_PRODUCTS = "Текущий список товаров:";
-    private static final String LIST_IS_EMPTY = "Список товаров пуст!";
+    private static final String LIST_ORDERS = "Текущий список заказов:";
+    private static final String LIST_IS_EMPTY = "Список пуст!";
     private static final String ITEM_NAME = "Введите название товара: ";
+    private static final String ADDED = "Товар добавлен!";
     private static final String EXIT = "Выход из меню.";
 
-    public UUID setUUID() {
+    public int setId() {
         Random random = new Random();
-        UUID uuid = new UUID(random.nextLong(), random.nextLong());
-        return uuid;
+        return random.nextInt(1000000, 10000000);
     }
 
-    public Date setDate(){
-        Date data = new Date();
-        return data;
+    public String setDate(){
+        Date date = new Date();
+        SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
+        return formater.format(date);
     }
 
     public void startMenu() {
@@ -60,9 +63,10 @@ public class Menu {
         switch (choiceNumber(MENU_ITEM,3)) {
             case 1:
                 try {
-                    printProducts();
+                    printProductsList();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    productsMenu();
                 }
                 productsMenu();
                 break;
@@ -80,6 +84,7 @@ public class Menu {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                productsMenu();
                 break;
             case 0:
                 startMenu();
@@ -97,7 +102,13 @@ public class Menu {
                 """);
         switch (choiceNumber(MENU_ITEM, 3)) {
             case 1:
-                System.out.println();
+                try {
+                    printOrdersList();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    ordersMenu();
+                }
+                ordersMenu();
                 break;
             case 2:
                 try {
@@ -105,9 +116,16 @@ public class Menu {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                ordersMenu();
                 break;
             case 3:
-                System.out.println();
+                try {
+                    deleteOrder();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ordersMenu();
+                break;
             case 0:
                 startMenu();
                 break;
@@ -155,7 +173,7 @@ public class Menu {
         return name;
     }
 
-    private void printProducts() throws IOException {
+    private void printProductsList() throws IOException {
         File file = Path.of("resources", "proudctsList.txt").toFile();
         try(var reader = new BufferedReader(new FileReader(file))) {
             String text = reader
@@ -168,12 +186,26 @@ public class Menu {
         }
     }
 
+    private void printOrdersList() throws IOException {
+        File file = Path.of("resources", "ordersList.txt").toFile();
+        try(var reader = new BufferedReader(new FileReader(file))) {
+            String text = reader
+                    .lines()
+                    .collect(Collectors.joining(System.lineSeparator()));
+            if (text.length() != 0) {
+                System.out.println(LIST_ORDERS);
+                System.out.println(text);
+            } else System.out.println(LIST_IS_EMPTY);
+        }
+    }
+
     private void addProduct() throws IOException {
         File file = Path.of("resources", "proudctsList.txt").toFile();
         try(var writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.append(new Product(enterName()).toString());
             writer.newLine();
         }
+        System.out.println(ADDED);
     }
 
     private void deleteProduct() throws IOException {
@@ -207,8 +239,7 @@ public class Menu {
                     writer.append("");
                 }
             }
-            printProducts();
-            productsMenu();
+            printProductsList();
         } else productsMenu();
     }
 
@@ -224,19 +255,52 @@ public class Menu {
             switch (choiceNumber(MENU_ITEM, 1)) {
                 case 1:
                     products.add(new Product(enterName()));
-                    System.out.println("Товар добавлен!");
+                    System.out.println(ADDED);
                     break;
                 case 0:
                     izContinue = false;
                     break;
             }
         } while (izContinue);
-        System.out.println(Arrays.toString(products.toArray()));
-        ordersMenu();
         File file = Path.of("resources", "ordersList.txt").toFile();
         try(var writer = new BufferedWriter(new FileWriter(file, true))) {
-//            writer.append(new Product(enterName()).toString());
-//            writer.newLine();
+            writer.append(new Order(products).toString());
+            writer.newLine();
         }
+    }
+
+    private void deleteOrder() throws IOException {
+        File file = Path.of("resources", "ordersList.txt").toFile();
+        int i = 1;
+        List<String> lines = new ArrayList<>();
+        try(var reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.print(i + ": " + line + System.lineSeparator());
+                lines.add(line);
+                i++;
+            }
+        }
+        int choice = choiceNumber(DEL_POSITION_NUMBER, i);
+        if (choice != 0) {
+            lines.remove(choice - 1);
+            if (lines.size() != 0) {
+                try(var writer = new BufferedWriter(new FileWriter(file))) {
+                    writer.append(lines.get(0));
+                    writer.newLine();
+                }
+                try(var writer = new BufferedWriter(new FileWriter(file, true))) {
+                    for (int j = 1; j < lines.size(); j++) {
+                        writer.append(lines.toArray()[j].toString());
+                        writer.newLine();
+                    }
+                }
+            } else {
+                try (var writer = new BufferedWriter(new FileWriter(file))) {
+                    writer.append("");
+                }
+            }
+            printOrdersList();
+        } else ordersMenu();
     }
 }

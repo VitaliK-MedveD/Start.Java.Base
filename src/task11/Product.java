@@ -1,14 +1,10 @@
 package task11;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
 public class Product extends Menu{
 
     private String name;
-    private Date dateProduction = setDate();
-    private UUID id = setUUID();
+    private String dateProduction = setDate();
+    private int id = setId();
 
     public Product(String name) {
         this.name = name;
@@ -17,8 +13,8 @@ public class Product extends Menu{
     @Override
     public String toString() {
         return "[" + name +
-                "; Дата производства: " + dateProduction +
-                "; Идентификатор: " + id +
+                "; Дата произдства: " + dateProduction +
+                "; ID: " + id +
                 ']';
     }
 

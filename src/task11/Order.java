@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Order extends Menu{
 
-    private final UUID id = setUUID();
+    private int id = setId();
     private List<Product> products;
-    private final Date dateOrder = setDate();
+    private String dateOrder = setDate();
 
     public Order(List<Product> products) {
         this.products = products;
