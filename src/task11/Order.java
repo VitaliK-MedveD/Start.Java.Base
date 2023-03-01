@@ -2,7 +2,7 @@ package task11;
 
 import java.util.*;
 
-public class Order extends Menu{
+public class Order implements Attributes {
 
     private int id = setId();
     private List<Product> products;

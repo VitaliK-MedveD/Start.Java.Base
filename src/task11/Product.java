@@ -1,6 +1,6 @@
 package task11;
 
-public class Product extends Menu{
+public class Product implements Attributes {
 
     private String name;
     private String dateProduction = setDate();
@@ -17,5 +17,4 @@ public class Product extends Menu{
                 "; ID: " + id +
                 ']';
     }
-
 }
